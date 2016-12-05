@@ -17,7 +17,7 @@
 
       <% @bias_ratings.each do |bias_rating| %>
       <tr>
-        <td><%= bias_rating.user_id %></td>
+        <td><%= bias_rating.user.created_at %></td>
         <td><%= bias_rating.news_source_id %></td>
         <td><%= bias_rating.rating %></td>
         <td>
