@@ -18,7 +18,7 @@
 
       <% @reports.each do |report| %>
       <tr>
-        <td><%= report.user_id %></td>
+        <td><%= report.user.created_at %></td>
         <td><%= report.content %></td>
         <td><%= report.article_link %></td>
         <td><%= report.news_source_id %></td>
