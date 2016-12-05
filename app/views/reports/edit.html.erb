@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @report.errors.any? %>
+  <% @report.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Report #<%= @report.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_report/<%= @report.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @report.user_id %>">
+      </div>
+
+      <!-- Label and input for content -->
+      <div class="form-group">
+        <label for="content" class="control-label">
+          Content
+        </label>
+
+        <input type="text" id="content" name="content" placeholder="Content" class="form-control" value="<%= @report.content %>">
+      </div>
+
+      <!-- Label and input for article_link -->
+      <div class="form-group">
+        <label for="article_link" class="control-label">
+          Article link
+        </label>
+
+        <input type="text" id="article_link" name="article_link" placeholder="Article link" class="form-control" value="<%= @report.article_link %>">
+      </div>
+
+      <!-- Label and input for news_source_id -->
+      <div class="form-group">
+        <label for="news_source_id" class="control-label">
+          News source
+        </label>
+
+        <input type="text" id="news_source_id" name="news_source_id" placeholder="News source" class="form-control" value="<%= @report.news_source_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Report
+      </button>
+      or
+      <a href="/reports/<%= @report.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

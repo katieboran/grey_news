@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Reports
+    <a href="/reports/new" class="btn btn-lg btn-success">New Report</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>User</th>
+        <th>Content</th>
+        <th>Article link</th>
+        <th>News source</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.user_id %></td>
+        <td><%= report.content %></td>
+        <td><%= report.article_link %></td>
+        <td><%= report.news_source_id %></td>
+        <td>
+          <a href="/reports/<%= report.id %>" class="btn btn-primary">Show</a>
+          <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_report/<%= report.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

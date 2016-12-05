@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Report resource:
+  # CREATE
+  get "/reports/new", :controller => "reports", :action => "new"
+  post "/create_report", :controller => "reports", :action => "create"
+
+  # READ
+  get "/reports", :controller => "reports", :action => "index"
+  get "/reports/:id", :controller => "reports", :action => "show"
+
+  # UPDATE
+  get "/reports/:id/edit", :controller => "reports", :action => "edit"
+  post "/update_report/:id", :controller => "reports", :action => "update"
+
+  # DELETE
+  get "/delete_report/:id", :controller => "reports", :action => "destroy"
+  #------------------------------
+
   # Routes for the Bias_rating resource:
   # CREATE
   get "/bias_ratings/new", :controller => "bias_ratings", :action => "new"
