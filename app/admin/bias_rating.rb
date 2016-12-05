@@ -1,5 +1,7 @@
 ActiveAdmin.register BiasRating do
 
+ permit_params :user_id, :news_source_id, :rating
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
