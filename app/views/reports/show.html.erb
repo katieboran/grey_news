@@ -6,7 +6,13 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>User</dt>
-      <dd><%= @report.user_id %></dd>
+      <dd>
+        <% if @report.user.present? %>
+          <a href="/users/<%= @report.user_id %>">
+            <%= @report.user.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Content</dt>
       <dd><%= @report.content %></dd>
@@ -15,7 +21,13 @@
       <dd><%= @report.article_link %></dd>
 
       <dt>News source</dt>
-      <dd><%= @report.news_source_id %></dd>
+      <dd>
+        <% if @report.news_source.present? %>
+          <a href="/news_sources/<%= @report.news_source_id %>">
+            <%= @report.news_source.category %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

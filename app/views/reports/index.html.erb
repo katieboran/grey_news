@@ -18,10 +18,22 @@
 
       <% @reports.each do |report| %>
       <tr>
-        <td><%= report.user.created_at %></td>
+        <td>
+          <% if report.user.present? %>
+            <a href="/users/<%= report.user.id %>">
+              <%= report.user.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td><%= report.content %></td>
         <td><%= report.article_link %></td>
-        <td><%= report.news_source.category %></td>
+        <td>
+          <% if report.news_source.present? %>
+            <a href="/news_sources/<%= report.news_source.id %>">
+              <%= report.news_source.category %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/reports/<%= report.id %>" class="btn btn-primary">Show</a>
           <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">Edit</a>

@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>User</dt>
-      <dd><%= @bias_rating.user_id %></dd>
+      <dd>
+        <% if @bias_rating.user.present? %>
+          <a href="/users/<%= @bias_rating.user_id %>">
+            <%= @bias_rating.user.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>News source</dt>
-      <dd><%= @bias_rating.news_source_id %></dd>
+      <dd>
+        <% if @bias_rating.news_source.present? %>
+          <a href="/news_sources/<%= @bias_rating.news_source_id %>">
+            <%= @bias_rating.news_source.category %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Rating</dt>
       <dd><%= @bias_rating.rating %></dd>

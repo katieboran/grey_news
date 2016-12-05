@@ -17,8 +17,20 @@
 
       <% @bias_ratings.each do |bias_rating| %>
       <tr>
-        <td><%= bias_rating.user.created_at %></td>
-        <td><%= bias_rating.news_source.category %></td>
+        <td>
+          <% if bias_rating.user.present? %>
+            <a href="/users/<%= bias_rating.user.id %>">
+              <%= bias_rating.user.created_at %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if bias_rating.news_source.present? %>
+            <a href="/news_sources/<%= bias_rating.news_source.id %>">
+              <%= bias_rating.news_source.category %>
+            </a>
+          <% end %>
+        </td>
         <td><%= bias_rating.rating %></td>
         <td>
           <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">Show</a>
