@@ -15,6 +15,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :preferences,
+             :through => :favorites,
+             :source => :news_source
+
   # Validations
 
   validates :username, :uniqueness => { :scope => [:age] }

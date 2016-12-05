@@ -15,6 +15,10 @@ class NewsSource < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :admirers,
+             :through => :favorites,
+             :source => :user
+
   # Validations
 
   validates :category, :presence => true
