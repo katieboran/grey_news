@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>
+    Bias ratings
+    <a href="/bias_ratings/new" class="btn btn-lg btn-success">New Bias rating</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>User</th>
+        <th>News source</th>
+        <th>Rating</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @bias_ratings.each do |bias_rating| %>
+      <tr>
+        <td><%= bias_rating.user_id %></td>
+        <td><%= bias_rating.news_source_id %></td>
+        <td><%= bias_rating.rating %></td>
+        <td>
+          <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">Show</a>
+          <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

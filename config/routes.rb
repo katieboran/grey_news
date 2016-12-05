@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Bias_rating resource:
+  # CREATE
+  get "/bias_ratings/new", :controller => "bias_ratings", :action => "new"
+  post "/create_bias_rating", :controller => "bias_ratings", :action => "create"
+
+  # READ
+  get "/bias_ratings", :controller => "bias_ratings", :action => "index"
+  get "/bias_ratings/:id", :controller => "bias_ratings", :action => "show"
+
+  # UPDATE
+  get "/bias_ratings/:id/edit", :controller => "bias_ratings", :action => "edit"
+  post "/update_bias_rating/:id", :controller => "bias_ratings", :action => "update"
+
+  # DELETE
+  get "/delete_bias_rating/:id", :controller => "bias_ratings", :action => "destroy"
+  #------------------------------
+
   # Routes for the Favorite resource:
   # CREATE
   get "/favorites/new", :controller => "favorites", :action => "new"
