@@ -1,6 +1,8 @@
 class Comment < ApplicationRecord
   # Direct associations
 
+  belongs_to :news_source
+
   # Indirect associations
 
   # Validations

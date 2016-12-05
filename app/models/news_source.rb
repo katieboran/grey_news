@@ -1,6 +1,9 @@
 class NewsSource < ApplicationRecord
   # Direct associations
 
+  has_many   :comments,
+             :dependent => :destroy
+
   has_many   :reports,
              :dependent => :destroy
 
