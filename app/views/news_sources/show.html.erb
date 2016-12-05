@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>News Source #<%= @news_source.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Category</dt>
+      <dd><%= @news_source.category %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @news_source.description %></dd>
+
+      <dt>Location</dt>
+      <dd><%= @news_source.location %></dd>
+
+      <dt>Date founded</dt>
+      <dd><%= @news_source.date_founded %></dd>
+
+      <dt>Ownership</dt>
+      <dd><%= @news_source.ownership %></dd>
+
+      <dt>Image</dt>
+      <dd><%= @news_source.image %></dd>
+
+      <dt>Website</dt>
+      <dd><%= @news_source.website %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @news_source.name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/news_sources" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/news_sources/<%= @news_source.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_news_source/<%= @news_source.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

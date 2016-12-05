@@ -1,0 +1,100 @@
+<!-- Validation failure messages -->
+<% if @news_source.errors.any? %>
+  <% @news_source.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit News Source #<%= @news_source.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_news_source/<%= @news_source.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for category -->
+      <div class="form-group">
+        <label for="category" class="control-label">
+          Category
+        </label>
+
+        <input type="text" id="category" name="category" placeholder="Category" class="form-control" value="<%= @news_source.category %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @news_source.description %></textarea>
+      </div>
+
+      <!-- Label and input for location -->
+      <div class="form-group">
+        <label for="location" class="control-label">
+          Location
+        </label>
+
+        <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @news_source.location %>">
+      </div>
+
+      <!-- Label and input for date_founded -->
+      <div class="form-group">
+        <label for="date_founded" class="control-label">
+          Date founded
+        </label>
+
+        <input type="text" id="date_founded" name="date_founded" placeholder="Date founded" class="form-control" value="<%= @news_source.date_founded %>">
+      </div>
+
+      <!-- Label and input for ownership -->
+      <div class="form-group">
+        <label for="ownership" class="control-label">
+          Ownership
+        </label>
+
+        <input type="text" id="ownership" name="ownership" placeholder="Ownership" class="form-control" value="<%= @news_source.ownership %>">
+      </div>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Image
+        </label>
+
+        <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @news_source.image %>">
+      </div>
+
+      <!-- Label and input for website -->
+      <div class="form-group">
+        <label for="website" class="control-label">
+          Website
+        </label>
+
+        <input type="text" id="website" name="website" placeholder="Website" class="form-control" value="<%= @news_source.website %>">
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @news_source.name %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update News Source
+      </button>
+      or
+      <a href="/news_sources/<%= @news_source.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
