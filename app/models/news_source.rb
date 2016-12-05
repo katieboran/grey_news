@@ -1,6 +1,9 @@
 class NewsSource < ApplicationRecord
   # Direct associations
 
+  has_many   :favorites,
+             :dependent => :destroy
+
   has_many   :bias_ratings,
              :dependent => :destroy
 
