@@ -1,6 +1,9 @@
 class Report < ApplicationRecord
   # Direct associations
 
+  belongs_to :user,
+             :counter_cache => true
+
   belongs_to :news_source,
              :counter_cache => true
 
