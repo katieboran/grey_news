@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   # Validations
 
+  validates :username, :uniqueness => { :scope => [:age] }
+
   validates :username, :presence => true
 
   validates :username, :length => { :maximum => 20 }
