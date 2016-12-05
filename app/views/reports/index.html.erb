@@ -21,7 +21,7 @@
         <td><%= report.user.created_at %></td>
         <td><%= report.content %></td>
         <td><%= report.article_link %></td>
-        <td><%= report.news_source_id %></td>
+        <td><%= report.news_source.category %></td>
         <td>
           <a href="/reports/<%= report.id %>" class="btn btn-primary">Show</a>
           <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">Edit</a>
