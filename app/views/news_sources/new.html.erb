@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @news_source.errors.any? %>
-  <% @news_source.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @news_source.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -19,21 +19,19 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for category -->
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Select Category
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Newspaper(Print and Online)</a></li>
-            <li><a href="#">Newspaper(Print Only)</a></li>
-            <li><a href="#">Website</a></li>
-            <li><a href="#">Radio Station</a></li>
-            <li><a href="#">Television Channel</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </div>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Select Category
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li role= "presentation"><a  role ="menuitem" tabindex= "-1" href="#">Newspaper(Print and Online)</a></li>
+          <li role= "presentation"><a  role ="menuitem" tabindex= "-1" href="#">Newspaper(Print Only)</a></li>
+          <li role= "presentation"><a  role ="menuitem" tabindex= "-1" href="#">Website</a></li>
+          <li role= "presentation"><a  role ="menuitem" tabindex= "-1" href="#">Radio Station</a></li>
+          <li role= "presentation"><a  role ="menuitem" tabindex= "-1" href="#">Television Channel</a></li>
+        </ul>
+      </div>
 
 
       <!-- Label and input for description -->

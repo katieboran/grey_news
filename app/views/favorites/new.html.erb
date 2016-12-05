@@ -24,7 +24,7 @@
           User
         </label>
 
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :created_at, @favorite.user_id), :class => "form-control") %>
+        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username, @favorite.user_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for news_source_id -->
@@ -33,7 +33,7 @@
           News source
         </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category, @favorite.news_source_id), :class => "form-control") %>
+        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name, @favorite.news_source_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">

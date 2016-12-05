@@ -28,7 +28,7 @@
         <td><%= news_source.date_founded %></td>
         <td><%= news_source.ownership %></td>
         <td><img src='<%= news_source.image %>' class='img-responsive'></td>
-        <td><%= news_source.website %></td>
+        <td> <a href= "<%= news_source.website %>"><%=news_source.website%></a></td>
         <td><%= news_source.name %></td>
         <td>
           <a href="/news_sources/<%= news_source.id %>" class="btn btn-primary">Show</a>
