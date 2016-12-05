@@ -6,6 +6,10 @@ class NewsSourcesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @report = Report.new
+    @favorite = Favorite.new
+    @bias_rating = BiasRating.new
     @news_source = NewsSource.find(params[:id])
 
     render("news_sources/show.html.erb")
