@@ -24,7 +24,7 @@
           User
         </label>
 
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :created_at, @report.user_id), :class => "form-control") %>
+        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username, @report.user_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for content -->
@@ -51,7 +51,7 @@
           News source
         </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category, @report.news_source_id), :class => "form-control") %>
+        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name, @report.news_source_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">

@@ -9,7 +9,7 @@
       <dd>
         <% if @comment.user.present? %>
           <a href="/users/<%= @comment.user_id %>">
-            <%= @comment.user.created_at %>
+            <%= @comment.user.username %>
           </a>
         <% end %>
       </dd>

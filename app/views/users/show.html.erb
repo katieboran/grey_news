@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>User #<%= @user.id %></h3>
+  <h3><%= @user.username %></h3>
 </div>
 
 <div class="row">
@@ -23,16 +23,10 @@
       <dt>Email</dt>
       <dd><%= @user.email %></dd>
 
-      <dt>Password</dt>
-      <dd><%= @user.password %></dd>
+    <!--  <dt>Password</dt>
+      <dd><%= @user.password %></dd> -->
 
     </dl>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/users" class="btn btn-primary">
-        Back
-      </a>
-    </div>
   </div>
 </div>
 
@@ -48,7 +42,7 @@
       <% @user.bias_ratings.each do |bias_rating| %>
         <li class="list-group-item">
           <a href="/bias_ratings/<%= bias_rating.id %>">
-            <%= bias_rating.user_id %>
+            <%= bias_rating.rating %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">
@@ -227,5 +221,10 @@
         </li>
       <% end %>
     </ul>
+    <div class="btn-group btn-group-justified">
+      <a href="/users" class="btn btn-primary">
+        Back
+      </a>
+    </div>
   </div>
 </div>

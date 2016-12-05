@@ -129,23 +129,26 @@
         <td>
           <% if report.user.present? %>
             <a href="/users/<%= report.user.id %>">
-              <%= report.user.created_at %>
+              <%= report.user.username %>
             </a>
           <% end %>
         </td>
-        <td><%= report.content %></td>
-        <td><%= report.article_link %></td>
+        <td colspan="600"><%= report.content %></td>
+        <td>
+          <%= report.article_link %></td>
         <td>
           <% if report.news_source.present? %>
             <a href="/news_sources/<%= report.news_source.id %>">
-              <%= report.news_source.category %>
+              <%= report.news_source.name %>
             </a>
           <% end %>
         </td>
+        <% if current_user.id == report.user_id  %>
         <td>
           <a href="/reports/<%= report.id %>" class="btn btn-primary">Show</a>
           <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_report/<%= report.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

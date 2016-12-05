@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>News Source #<%= @news_source.id %></h3>
+  <h3><%= @news_source.name %></h3>
 </div>
 
 <div class="row">
@@ -30,18 +30,6 @@
       <dd><%= @news_source.name %></dd>
 
     </dl>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/news_sources" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/news_sources/<%= @news_source.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_news_source/<%= @news_source.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
   </div>
 </div>
 
@@ -55,54 +43,54 @@
       </li>
 
       <% @news_source.bias_ratings.each do |bias_rating| %>
-        <li class="list-group-item">
-          <a href="/bias_ratings/<%= bias_rating.id %>">
-            <%= bias_rating.user_id %>
+      <li class="list-group-item">
+        <a href="/bias_ratings/<%= bias_rating.id %>">
+          <%= bias_rating.user_id %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+          <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
 
       <li class="list-group-item">
         <form action="/create_bias_rating" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+          <!-- Label and input for user_id -->
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-      <!-- Label and input for news_source_id -->
-      <div class="form-group">
-        <label for="news_source_id" class="control-label">
-          News source
-        </label>
+          <!-- Label and input for news_source_id -->
+          <div class="form-group">
+            <label for="news_source_id" class="control-label">
+              News source
+            </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
-      </div>
+            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
+          </div>
 
-      <!-- Label and input for rating -->
-      <div class="form-group">
-        <label for="rating" class="control-label">
-          Rating
-        </label>
+          <!-- Label and input for rating -->
+          <div class="form-group">
+            <label for="rating" class="control-label">
+              Rating
+            </label>
 
-        <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="">
-      </div>
+            <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="">
+          </div>
 
-      <button class="btn btn-block btn-success">
-        Create Bias Rating
-      </button>
-    </form>
+          <button class="btn btn-block btn-success">
+            Create Bias Rating
+          </button>
+        </form>
       </li>
     </ul>
   </div>
@@ -118,51 +106,51 @@
       </li>
 
       <% @news_source.favorites.each do |favorite| %>
-        <li class="list-group-item">
-          <a href="/favorites/<%= favorite.id %>">
-            <%= favorite.user_id %>
+      <li class="list-group-item">
+        <a href="/favorites/<%= favorite.id %>">
+          <%= favorite.user_id %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+          <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
 
       <li class="list-group-item">
         <form action="/create_favorite" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <label for="user_id" class="control-label">
+              User
+            </label>
 
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :created_at), :class => "form-control") %>
-      </div>
+            <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %>
+          </div>
 
-      <!-- Label and input for news_source_id -->
-      <div class="form-group">
-        <label for="news_source_id" class="control-label">
-          News source
-        </label>
+          <!-- Label and input for news_source_id -->
+          <div class="form-group">
+            <label for="news_source_id" class="control-label">
+              News source
+            </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
-      </div>
+            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
+          </div>
 
-      <button class="btn btn-block btn-success">
-        Create Favorite
-      </button>
-    </form>
+          <button class="btn btn-block btn-success">
+            Create Favorite
+          </button>
+        </form>
       </li>
     </ul>
   </div>
@@ -178,69 +166,68 @@
       </li>
 
       <% @news_source.reports.each do |report| %>
-        <li class="list-group-item">
-          <a href="/reports/<%= report.id %>">
-            <%= report.user_id %>
+      <li class="list-group-item">
+          <%= report.content %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/reports/<%= report.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/reports/<%= report.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_report/<%= report.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+          <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_report/<%= report.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
 
       <li class="list-group-item">
         <form action="/create_report" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <label for="user_id" class="control-label">
+              User
+            </label>
 
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :created_at), :class => "form-control") %>
-      </div>
+            <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %>
+          </div>
 
-      <!-- Label and input for content -->
-      <div class="form-group">
-        <label for="content" class="control-label">
-          Content
-        </label>
+          <!-- Label and input for content -->
+          <div class="form-group">
+            <label for="content" class="control-label">
+              Content
+            </label>
 
-        <input type="text" id="content" name="content" placeholder="Content" class="form-control" value="">
-      </div>
+            <input type="text" id="content" name="content" placeholder="Content" class="form-control" value="">
+          </div>
 
-      <!-- Label and input for article_link -->
-      <div class="form-group">
-        <label for="article_link" class="control-label">
-          Article link
-        </label>
+          <!-- Label and input for article_link -->
+          <div class="form-group">
+            <label for="article_link" class="control-label">
+              Article link
+            </label>
 
-        <input type="text" id="article_link" name="article_link" placeholder="Article link" class="form-control" value="">
-      </div>
+            <input type="text" id="article_link" name="article_link" placeholder="Article link" class="form-control" value="">
+          </div>
 
-      <!-- Label and input for news_source_id -->
-      <div class="form-group">
-        <label for="news_source_id" class="control-label">
-          News source
-        </label>
+          <!-- Label and input for news_source_id -->
+          <div class="form-group">
+            <label for="news_source_id" class="control-label">
+              News source
+            </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
-      </div>
+            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
+          </div>
 
-      <button class="btn btn-block btn-success">
-        Create Report
-      </button>
-    </form>
+          <button class="btn btn-block btn-success">
+            Create Report
+          </button>
+        </form>
       </li>
     </ul>
   </div>
@@ -256,60 +243,59 @@
       </li>
 
       <% @news_source.comments.each do |comment| %>
-        <li class="list-group-item">
-          <a href="/comments/<%= comment.id %>">
-            <%= comment.user_id %>
+      <li class="list-group-item">
+          <%= comment.content %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/comments/<%= comment.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/comments/<%= comment.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+          <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
 
       <li class="list-group-item">
         <form action="/create_comment" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <label for="user_id" class="control-label">
+              User
+            </label>
 
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :created_at), :class => "form-control") %>
-      </div>
+            <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %>
+          </div>
 
-      <!-- Label and input for content -->
-      <div class="form-group">
-        <label for="content" class="control-label">
-          Content
-        </label>
+          <!-- Label and input for content -->
+          <div class="form-group">
+            <label for="content" class="control-label">
+              Content
+            </label>
 
-        <input type="text" id="content" name="content" placeholder="Content" class="form-control" value="">
-      </div>
+            <input type="text" id="content" name="content" placeholder="Content" class="form-control" value="">
+          </div>
 
-      <!-- Label and input for news_source_id -->
-      <div class="form-group">
-        <label for="news_source_id" class="control-label">
-          News source
-        </label>
+          <!-- Label and input for news_source_id -->
+          <div class="form-group">
+            <label for="news_source_id" class="control-label">
+              News source
+            </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
-      </div>
+            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name), :class => "form-control") %>
+          </div>
 
-      <button class="btn btn-block btn-success">
-        Create Comment
-      </button>
-    </form>
+          <button class="btn btn-block btn-success">
+            Create Comment
+          </button>
+        </form>
       </li>
     </ul>
   </div>
@@ -325,22 +311,22 @@
       </li>
 
       <% @news_source.admirers.each do |user| %>
-        <li class="list-group-item">
-          <a href="/users/<%= user.id %>">
-            <%= user.created_at %>
+      <li class="list-group-item">
+        <a href="/users/<%= user.id %>">
+          <%= user.username %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/users/<%= user.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/users/<%= user.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+          <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
     </ul>
   </div>
@@ -356,23 +342,34 @@
       </li>
 
       <% @news_source.observers.each do |user| %>
-        <li class="list-group-item">
-          <a href="/users/<%= user.id %>">
-            <%= user.created_at %>
+      <li class="list-group-item">
+        <a href="/users/<%= user.id %>">
+          <%= user.username %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/users/<%= user.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/users/<%= user.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
+          <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </li>
       <% end %>
     </ul>
+    <div class="btn-group btn-group-justified">
+      <a href="/news_sources" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/news_sources/<%= @news_source.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_news_source/<%= @news_source.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
   </div>
 </div>

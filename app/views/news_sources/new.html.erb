@@ -19,13 +19,22 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for category -->
-      <div class="form-group">
-        <label for="category" class="control-label">
-          Category
-        </label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Select Category
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Newspaper(Print and Online)</a></li>
+            <li><a href="#">Newspaper(Print Only)</a></li>
+            <li><a href="#">Website</a></li>
+            <li><a href="#">Radio Station</a></li>
+            <li><a href="#">Television Channel</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
 
-        <input type="text" id="category" name="category" placeholder="Category" class="form-control" value="<%= @news_source.category %>">
-      </div>
 
       <!-- Label and input for description -->
       <div class="form-group">

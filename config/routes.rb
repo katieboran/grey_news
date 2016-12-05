@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root :to => "news_sources#index"
   devise_for :users
   # Routes for the User resource:
+  get '/users/sign_out' => 'devise/sessions#destroy'
   # READ
   get "/users", :controller => "users", :action => "index"
   get "/users/:id", :controller => "users", :action => "show"

@@ -20,7 +20,7 @@
         <td>
           <% if bias_rating.user.present? %>
             <a href="/users/<%= bias_rating.user.id %>">
-              <%= bias_rating.user.created_at %>
+              <%= bias_rating.user.username %>
             </a>
           <% end %>
         </td>
@@ -34,7 +34,7 @@
         <td><%= bias_rating.rating %></td>
         <td>
           <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">Show</a>
-          
+
           <% if current_user == bias_rating.user %>
             <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">Edit</a>
             <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">Delete</a>

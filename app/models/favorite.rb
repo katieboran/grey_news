@@ -10,7 +10,7 @@ class Favorite < ApplicationRecord
 
   # Validations
 
-  validates :news_source_id, :uniqueness => { :scope => [:user_id] }
+  validates :news_source_id, :uniqueness => { :scope => [:created_at] }
 
   validates :news_source_id, :presence => true
 

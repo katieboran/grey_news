@@ -107,7 +107,6 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>User</th>
         <th>News source</th>
         <th>Actions</th>
       </tr>
@@ -115,16 +114,9 @@
       <% @favorites.each do |favorite| %>
       <tr>
         <td>
-          <% if favorite.user.present? %>
-            <a href="/users/<%= favorite.user.id %>">
-              <%= favorite.user.created_at %>
-            </a>
-          <% end %>
-        </td>
-        <td>
           <% if favorite.news_source.present? %>
             <a href="/news_sources/<%= favorite.news_source.id %>">
-              <%= favorite.news_source.category %>
+              <%= favorite.news_source.name %>
             </a>
           <% end %>
         </td>
