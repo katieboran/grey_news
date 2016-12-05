@@ -5,6 +5,8 @@ class BiasRating < ApplicationRecord
 
   # Validations
 
+  validates :news_source_id, :presence => true
+
   validates :rating, :presence => true
 
   validates :rating, :numericality => { :less_than_or_equal_to => 10, :greater_than_or_equal_to => 1 }
