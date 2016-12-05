@@ -5,6 +5,8 @@ class NewsSource < ApplicationRecord
 
   # Validations
 
+  validates :description, :presence => true
+
   validates :name, :presence => true
 
 end
