@@ -1,6 +1,6 @@
 class NewsSourcesController < ApplicationController
   def index
-    @news_sources = NewsSource.all
+    @news_sources = NewsSource.page(params[:page]).per(10)
 
     render("news_sources/index.html.erb")
   end

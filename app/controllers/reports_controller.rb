@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def index
-    @reports = Report.all
+    @reports = Report.page(params[:page]).per(10)
 
     render("reports/index.html.erb")
   end

@@ -10,7 +10,7 @@ class BiasRatingsController < ApplicationController
   end
 
   def index
-    @bias_ratings = BiasRating.all
+    @bias_ratings = BiasRating.page(params[:page]).per(10)
 
     render("bias_ratings/index.html.erb")
   end
