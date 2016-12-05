@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   def index
-    @reports = Report.page(params[:page]).per(10)
+    @q = Report.ransack(params[:q])
+    @reports = @q.result(:distinct => true).includes(:news_source, :user).page(params[:page]).per(10)
 
     render("reports/index.html.erb")
   end

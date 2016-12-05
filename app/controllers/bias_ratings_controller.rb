@@ -10,7 +10,8 @@ class BiasRatingsController < ApplicationController
   end
 
   def index
-    @bias_ratings = BiasRating.page(params[:page]).per(10)
+    @q = BiasRating.ransack(params[:q])
+    @bias_ratings = @q.result(:distinct => true).includes(:news_source, :user).page(params[:page]).per(10)
 
     render("bias_ratings/index.html.erb")
   end

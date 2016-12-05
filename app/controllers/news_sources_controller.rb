@@ -1,6 +1,7 @@
 class NewsSourcesController < ApplicationController
   def index
-    @news_sources = NewsSource.page(params[:page]).per(10)
+    @q = NewsSource.ransack(params[:q])
+    @news_sources = @q.result(:distinct => true).includes(:bias_ratings, :favorites, :reports, :comments, :admirers, :observers).page(params[:page]).per(10)
 
     render("news_sources/index.html.erb")
   end
