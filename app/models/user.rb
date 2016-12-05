@@ -15,6 +15,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :observations,
+             :through => :reports,
+             :source => :news_source
+
   has_many   :preferences,
              :through => :favorites,
              :source => :news_source

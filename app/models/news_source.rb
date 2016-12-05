@@ -15,6 +15,10 @@ class NewsSource < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :observers,
+             :through => :reports,
+             :source => :user
+
   has_many   :admirers,
              :through => :favorites,
              :source => :user
