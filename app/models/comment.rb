@@ -5,6 +5,8 @@ class Comment < ApplicationRecord
 
   # Validations
 
+  validates :content, :uniqueness => { :scope => [:user_id] }
+
   validates :content, :presence => true
 
   validates :news_source_id, :presence => true
