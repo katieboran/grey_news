@@ -22,8 +22,11 @@
         <td><%= bias_rating.rating %></td>
         <td>
           <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">Show</a>
-          <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == bias_rating.user %>
+            <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

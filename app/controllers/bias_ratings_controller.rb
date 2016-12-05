@@ -1,4 +1,14 @@
 class BiasRatingsController < ApplicationController
+  before_action :current_user_must_be_bias_rating_user, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_bias_rating_user
+    bias_rating = BiasRating.find(params[:id])
+
+    unless current_user == bias_rating.user
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @bias_ratings = BiasRating.all
 
