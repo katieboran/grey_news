@@ -5,6 +5,8 @@ class Report < ApplicationRecord
 
   # Validations
 
+  validates :article_link, :presence => true
+
   validates :content, :uniqueness => { :scope => [:article_link] }
 
   validates :content, :presence => true
