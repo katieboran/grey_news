@@ -51,7 +51,7 @@
           News source
         </label>
 
-        <input type="text" id="news_source_id" name="news_source_id" placeholder="News source" class="form-control" value="<%= @report.news_source_id %>">
+        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category, @report.news_source_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
