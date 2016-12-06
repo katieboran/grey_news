@@ -14,4 +14,3 @@
 /vendor/*
 !/vendor/assets/
 .env
-

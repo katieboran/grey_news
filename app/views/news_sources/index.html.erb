@@ -9,27 +9,26 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
+        <th>Name</th>
         <th>Category</th>
-        <th>Description</th>
+        <th>Bias Rating</th>
         <th>Location</th>
-        <th>Date founded</th>
-        <th>Ownership</th>
         <th>Image</th>
         <th>Website</th>
-        <th>Name</th>
         <th>Actions</th>
       </tr>
 
       <% @news_sources.each do |news_source| %>
       <tr>
+        <td><%= news_source.name %></td>
         <td><%= news_source.category %></td>
-        <td><%= news_source.description %></td>
+        <td>
+          <% arr = news_source.bias_ratings.pluck(:rating)%>
+          <%=arr.inject{ |sum, el| sum + el }.to_f / arr.size %>
+        </td>
         <td><%= news_source.location %></td>
-        <td><%= news_source.date_founded %></td>
-        <td><%= news_source.ownership %></td>
         <td><img src='<%= news_source.image %>' class='img-responsive'></td>
         <td> <a href= "<%= news_source.website %>"><%=news_source.website%></a></td>
-        <td><%= news_source.name %></td>
         <td>
           <a href="/news_sources/<%= news_source.id %>" class="btn btn-primary">Show</a>
           <a href="/news_sources/<%= news_source.id %>/edit" class="btn btn-warning">Edit</a>
