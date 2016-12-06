@@ -75,10 +75,12 @@
           <!-- Label and input for news_source_id -->
           <div class="form-group">
             <label for="news_source_id" class="control-label">
-              News source
+              News source Id
             </label>
 
-            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
+            <a>
+            <%= @news_source.id %>
+            <a>
           </div>
 
           <!-- Label and input for rating -->

@@ -9,6 +9,7 @@ class CreateNewsSources < ActiveRecord::Migration
       t.string :image
       t.string :website
       t.string :name
+      t.integer :user
 
       t.timestamps
 

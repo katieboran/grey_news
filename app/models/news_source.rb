@@ -15,6 +15,8 @@ class NewsSource < ApplicationRecord
   has_many   :bias_ratings,
              :dependent => :destroy
 
+  belongs_to :user           
+
   # Indirect associations
 
   has_many   :observers,

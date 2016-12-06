@@ -27,16 +27,19 @@
           <%=arr.inject{ |sum, el| sum + el }.to_f / arr.size %>
         </td>
         <td><%= news_source.location %></td>
-        <td><img src='<%= news_source.image %>' class='img-responsive'></td>
+        <td><img src='<%= news_source.image %>' class='img-responsive'width="75"></td>
         <td> <a href= "<%= news_source.website %>"><%=news_source.website%></a></td>
         <td>
           <a href="/news_sources/<%= news_source.id %>" class="btn btn-primary">Show</a>
           <a href="/news_sources/<%= news_source.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_news_source/<%= news_source.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= paginate @news_sources, theme: 'twitter-bootstrap-4' %>
-  </div>
-</div>
+
+          <td>
+            <td>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+        <%= paginate @news_sources, theme: 'twitter-bootstrap-4' %>
+      </div>
+    </div>
