@@ -12,6 +12,7 @@ class FavoritesController < ApplicationController
     render("favorites/show.html.erb")
   end
 
+
   def new
     @favorite = Favorite.new
 

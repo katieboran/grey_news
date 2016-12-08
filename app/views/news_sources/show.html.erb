@@ -42,27 +42,13 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Bias_ratings
+        Currrent Bias Rating (1=far right, 10=far left)
       </li>
 
-      <% @news_source.bias_ratings.each do |bias_rating| %>
       <li class="list-group-item">
-        <a href="/bias_ratings/<%= bias_rating.id %>">
-          <%= bias_rating.user_id %>
-        </a>
-        <div class="btn-group btn-group-xs pull-right">
-          <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-          <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-          <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </div>
-      </li>
-      <% end %>
+      <% arr =@news_source.bias_ratings.pluck(:rating)%>
+      <%=arr.inject{ |sum, el| sum + el }.to_f / arr.size %>
+    </li>
 
       <li class="list-group-item">
         <form action="/create_bias_rating" method="post">
@@ -73,20 +59,12 @@
           <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
           <!-- Label and input for news_source_id -->
-          <div class="form-group">
-            <label for="news_source_id" class="control-label">
-              News source Id
-            </label>
-
-            <a>
-            <%= @news_source.id %>
-            <a>
-          </div>
+            <input type="hidden" name="user_id" value="<%= @news_source.id %>">
 
           <!-- Label and input for rating -->
           <div class="form-group">
             <label for="rating" class="control-label">
-              Rating
+              Your Rating
             </label>
 
             <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="">
@@ -129,6 +107,9 @@
       </li>
       <% end %>
 
+      <% arr = @news_source.favorites.count%>
+
+
       <li class="list-group-item">
         <form action="/create_favorite" method="post">
           <!-- Hidden input for authenticity token to protect from forgery -->
@@ -149,7 +130,7 @@
               News source
             </label>
 
-            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
+            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name), :class => "form-control") %>
           </div>
 
           <button class="btn btn-block btn-success">
@@ -226,7 +207,7 @@
               News source
             </label>
 
-            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
+            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name), :class => "form-control") %>
           </div>
 
           <button class="btn btn-block btn-success">

@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1>
-    Favorites
+    My Favorites
     <a href="/favorites/new" class="btn btn-lg btn-success">New Favorite</a>
   </h1>
 </div><div class="row mb-1">
@@ -108,6 +108,7 @@
     <table class="table table-striped table-hover">
       <tr>
         <th>News source</th>
+        <th>Image </th>
         <th>Actions</th>
       </tr>
 
@@ -120,8 +121,9 @@
             </a>
           <% end %>
         </td>
+        <td><img src='<%= favorite.news_source.image %>' class='img-responsive'width="75"></td>
         <td>
-          <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">Show</a>
+          <a href="/news_sources/<%= favorite.news_source.id %>" class="btn btn-primary">Show</a>
           <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>

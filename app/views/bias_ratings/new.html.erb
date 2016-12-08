@@ -27,7 +27,7 @@
           News source
         </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category, @bias_rating.news_source_id), :class => "form-control") %>
+        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id,:name, @bias_rating.news_source_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for rating -->

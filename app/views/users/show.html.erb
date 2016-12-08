@@ -23,7 +23,7 @@
       <dt>Email</dt>
       <dd><%= @user.email %></dd>
 
-    <!--  <dt>Password</dt>
+      <!--  <dt>Password</dt>
       <dd><%= @user.password %></dd> -->
 
     </dl>
@@ -36,31 +36,30 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Bias_ratings
+        User Bias Ratings
       </li>
 
       <% @user.bias_ratings.each do |bias_rating| %>
-        <li class="list-group-item">
-          <a href="/bias_ratings/<%= bias_rating.id %>">
-            <%= bias_rating.rating %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <%if current_user == bias_rating.user %>
-              <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            <% end %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+      <li class="list-group-item">
+        <%= bias_rating.news_source.name %> - <%= bias_rating.rating %>
+      </a>
+      <div class="btn-group btn-group-xs pull-right">
+        <a href="/bias_ratings/<%= bias_rating.id %>" class="btn btn-primary">
+          <i class="fa fa-search-plus"></i>
+        </a>
+        <%if current_user == bias_rating.user %>
+        <a href="/bias_ratings/<%= bias_rating.id %>/edit" class="btn btn-warning">
+          <i class="fa fa-edit"></i>
+        </a>
+        <a href="/delete_bias_rating/<%= bias_rating.id %>" class="btn btn-danger" rel="nofollow">
+          <i class="fa fa-trash-o"></i>
+        </a>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
 </div>
 
 <!-- A User has many favorites -->
@@ -73,24 +72,24 @@
       </li>
 
       <% @user.favorites.each do |favorite| %>
-        <li class="list-group-item">
-          <a href="/favorites/<%= favorite.id %>">
-            <%= favorite.user_id %>
+      <li class="list-group-item">
+        <a href="/favorites/<%= favorite.id %>">
+          <%= favorite.news_source.name %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <%if current_user == favorite.user %>
-              <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            <% end %>
-          </div>
-        </li>
+          <%if current_user == favorite.user %>
+          <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+          <% end %>
+        </div>
+      </li>
       <% end %>
     </ul>
   </div>
@@ -106,27 +105,27 @@
       </li>
 
       <% @user.reports.each do |report| %>
-        <li class="list-group-item">
-          <a href="/reports/<%= report.id %>">
-            <%= report.user_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/reports/<%= report.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <%if current_user == report.user %>
-              <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="/delete_report/<%= report.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            <% end %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+      <li class="list-group-item">
+        <%= report.news_source.name %> - 
+        <%= report.content %>
+      </a>
+      <div class="btn-group btn-group-xs pull-right">
+        <a href="/reports/<%= report.id %>" class="btn btn-primary">
+          <i class="fa fa-search-plus"></i>
+        </a>
+        <%if current_user == report.user %>
+        <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">
+          <i class="fa fa-edit"></i>
+        </a>
+        <a href="/delete_report/<%= report.id %>" class="btn btn-danger" rel="nofollow">
+          <i class="fa fa-trash-o"></i>
+        </a>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
 </div>
 
 <!-- A User has many comments -->
@@ -139,92 +138,35 @@
       </li>
 
       <% @user.comments.each do |comment| %>
-        <li class="list-group-item">
-          <a href="/comments/<%= comment.id %>">
-            <%= comment.user_id %>
+      <li class="list-group-item">
+        <a href="/comments/<%= comment.id %>">
+          <%= comment.user_id %>
+        </a>
+        <div class="btn-group btn-group-xs pull-right">
+          <a href="/comments/<%= comment.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
           </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/comments/<%= comment.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <%if current_user == comment.user %>
-              <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            <% end %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
-<!-- A User has many preferences -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Preferences
+          <%if current_user == comment.user %>
+          <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+            <i class="fa fa-trash-o"></i>
+          </a>
+          <% end %>
+        </div>
       </li>
-
-      <% @user.preferences.each do |news_source| %>
-        <li class="list-group-item">
-          <a href="/news_sources/<%= news_source.id %>">
-            <%= news_source.category %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/news_sources/<%= news_source.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/news_sources/<%= news_source.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_news_source/<%= news_source.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
       <% end %>
     </ul>
   </div>
 </div>
+
 
 <!-- A User has many observations -->
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Observations
-      </li>
-
-      <% @user.observations.each do |news_source| %>
-        <li class="list-group-item">
-          <a href="/news_sources/<%= news_source.id %>">
-            <%= news_source.category %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/news_sources/<%= news_source.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/news_sources/<%= news_source.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_news_source/<%= news_source.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class="btn-group btn-group-justified">
-      <a href="/users" class="btn btn-primary">
-        Back
-      </a>
-    </div>
+  <div class="btn-group btn-group-justified">
+    <a href="/users" class="btn btn-primary">
+      Back
+    </a>
   </div>
 </div>

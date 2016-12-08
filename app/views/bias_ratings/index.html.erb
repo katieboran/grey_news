@@ -27,7 +27,7 @@
         <td>
           <% if bias_rating.news_source.present? %>
             <a href="/news_sources/<%= bias_rating.news_source.id %>">
-              <%= bias_rating.news_source.category %>
+              <%= bias_rating.news_source.name %>
             </a>
           <% end %>
         </td>

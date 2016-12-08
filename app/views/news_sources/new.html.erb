@@ -22,18 +22,10 @@
 
       <div class="form-group">
         <label for="news_source_id" class="control-label">
-          News source
+          category
         </label>
 
-        <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :category), :class => "form-control") %>
-
-      <div class="form-group">
-        <label for="location" class="control-label">
-          Location
-        </label>
-
-        <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @news_source.location %>">
-      </div>
+        <input type="text" id="category" name="category" placeholder="Category" class="form-control" value="<%= @news_source.category %>">
 
       <!-- Label and input for description -->
       <div class="form-group">
@@ -94,4 +86,16 @@
         <label for="name" class="control-label">
           Name
         </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @news_source.name %>">
+      </div>
+
+
+        <button class="btn btn-success">
+          Create News Source
+        </button>
+        or
+        <a href="/reports">Cancel</a>
+      </form>
+    </div>
 </div>
