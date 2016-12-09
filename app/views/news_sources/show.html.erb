@@ -128,13 +128,15 @@
         <div class="btn-group btn-group-xs pull-right">
           <a href="/reports/<%= report.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
-          </a>
+          </a
+          <% if current_user == report.user %>
           <a href="/reports/<%= report.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
           <a href="/delete_report/<%= report.id %>" class="btn btn-danger" rel="nofollow">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
         </div>
       </li>
       <% end %>
@@ -195,12 +197,14 @@
           <a href="/comments/<%= comment.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
+          <% if current_user == comment.user %>
           <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
           <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
         </div>
       </li>
       <% end %>
