@@ -30,9 +30,12 @@
         <td><img src='<%= news_source.image %>' class='img-responsive'width="75"></td>
         <td> <a href= "<%= news_source.website %>"><%=news_source.website%></a></td>
         <td>
+
           <a href="/news_sources/<%= news_source.id %>" class="btn btn-primary">Show</a>
+          <% if current_user == news_source.user %>
           <a href="/news_sources/<%= news_source.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_news_source/<%= news_source.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
 
           <td>
             <td>

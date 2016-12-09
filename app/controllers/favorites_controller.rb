@@ -1,10 +1,11 @@
 class FavoritesController < ApplicationController
   def index
-    @q = Favorite.ransack(params[:q])
-    @favorites = @q.result(:distinct => true).includes(:news_source, :user).page(params[:page]).per(10)
+    @favorites = Favorite.all
 
     render("favorites/index.html.erb")
   end
+
+
 
   def show
     @favorite = Favorite.find(params[:id])

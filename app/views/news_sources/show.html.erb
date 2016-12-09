@@ -85,30 +85,13 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Favorites
+        Number of Users who List this as a Favorite
       </li>
 
-      <% @news_source.favorites.each do |favorite| %>
       <li class="list-group-item">
-        <a href="/favorites/<%= favorite.id %>">
-          <%= favorite.user_id %>
-        </a>
-        <div class="btn-group btn-group-xs pull-right">
-          <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-          <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-          <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </div>
-      </li>
-      <% end %>
-
-      <% arr = @news_source.favorites.count%>
-
+      <% arr =@news_source.favorites.pluck(:user_id)%>
+      <%=arr.size %>
+    </li>
 
       <li class="list-group-item">
         <form action="/create_favorite" method="post">
@@ -116,25 +99,12 @@
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
           <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="control-label">
-              User
-            </label>
+          <input type="hidden" name="news_source_id" value="<%=@news_source.id%>">
+          <input type="hidden" name="user_id" value="<%=current_user.id%>">
 
-            <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %>
-          </div>
 
-          <!-- Label and input for news_source_id -->
-          <div class="form-group">
-            <label for="news_source_id" class="control-label">
-              News source
-            </label>
-
-            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name), :class => "form-control") %>
-          </div>
-
-          <button class="btn btn-block btn-success">
-            Create Favorite
+          <button name= "submit" class="btn btn-block btn-success">
+            Add <%=@news_source.name %> to your Favorites
           </button>
         </form>
       </li>
@@ -148,7 +118,7 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Reports
+        Articles Reported for Bias
       </li>
 
       <% @news_source.reports.each do |report| %>
@@ -175,13 +145,11 @@
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
           <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="control-label">
-              User
-            </label>
+          <input type="hidden" name="user_id" value="<%=current_user.id%>">
 
-            <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %>
-          </div>
+          <!-- Label and input for news_source_id -->
+          <input type="hidden" name="news_source_id" value="<%=@news_source.id%>">
+
 
           <!-- Label and input for content -->
           <div class="form-group">
@@ -195,23 +163,14 @@
           <!-- Label and input for article_link -->
           <div class="form-group">
             <label for="article_link" class="control-label">
-              Article link
+              Link
             </label>
 
             <input type="text" id="article_link" name="article_link" placeholder="Article link" class="form-control" value="">
           </div>
 
-          <!-- Label and input for news_source_id -->
-          <div class="form-group">
-            <label for="news_source_id" class="control-label">
-              News source
-            </label>
-
-            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name), :class => "form-control") %>
-          </div>
-
           <button class="btn btn-block btn-success">
-            Create Report
+            Report Biased Coverage from <%=@news_source.name %>
           </button>
         </form>
       </li>
@@ -225,7 +184,7 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Comments
+        What Users Think about this News Outlet
       </li>
 
       <% @news_source.comments.each do |comment| %>
@@ -252,13 +211,11 @@
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
           <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="control-label">
-              User
-            </label>
+          <!-- Label and input for user_id -->
+          <input type="hidden" name="user_id" value="<%=current_user.id%>">
 
-            <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control") %>
-          </div>
+          <!-- Label and input for news_source_id -->
+          <input type="hidden" name="news_source_id" value="<%=@news_source.id%>">
 
           <!-- Label and input for content -->
           <div class="form-group">
@@ -270,16 +227,9 @@
           </div>
 
           <!-- Label and input for news_source_id -->
-          <div class="form-group">
-            <label for="news_source_id" class="control-label">
-              News source
-            </label>
-
-            <%= select_tag(:news_source_id, options_from_collection_for_select(NewsSource.all, :id, :name), :class => "form-control") %>
-          </div>
 
           <button class="btn btn-block btn-success">
-            Create Comment
+            Tell Other Users What you Think about <%= @news_source.name %>
           </button>
         </form>
       </li>
@@ -289,63 +239,7 @@
 
 <!-- A News source has many admirers -->
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Admirers
-      </li>
 
-      <% @news_source.admirers.each do |user| %>
-      <li class="list-group-item">
-        <a href="/users/<%= user.id %>">
-          <%= user.username %>
-        </a>
-        <div class="btn-group btn-group-xs pull-right">
-          <a href="/users/<%= user.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-          <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-          <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </div>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
-<!-- A News source has many observers -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Observers
-      </li>
-
-      <% @news_source.observers.each do |user| %>
-      <li class="list-group-item">
-        <a href="/users/<%= user.id %>">
-          <%= user.username %>
-        </a>
-        <div class="btn-group btn-group-xs pull-right">
-          <a href="/users/<%= user.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-          <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-          <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </div>
-      </li>
-      <% end %>
-    </ul>
     <div class="btn-group btn-group-justified">
       <a href="/news_sources" class="btn btn-primary">
         Back
