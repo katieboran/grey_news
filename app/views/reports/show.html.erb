@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>Report #<%= @report.id %></h3>
+  <h3>Report by <%= @report.user.username %> on <%=@report.news_source.name %></h3>
 </div>
 
 <div class="row">
@@ -9,7 +9,7 @@
       <dd>
         <% if @report.user.present? %>
           <a href="/users/<%= @report.user_id %>">
-            <%= @report.user.created_at %>
+            <%= @report.user.username %>
           </a>
         <% end %>
       </dd>
@@ -24,7 +24,7 @@
       <dd>
         <% if @report.news_source.present? %>
           <a href="/news_sources/<%= @report.news_source_id %>">
-            <%= @report.news_source.category %>
+            <%= @report.news_source.name %>
           </a>
         <% end %>
       </dd>
@@ -35,12 +35,14 @@
       <a href="/reports" class="btn btn-primary">
         Back
       </a>
+      <% if current_user == @report.user  %>
       <a href="/reports/<%= @report.id %>/edit" class="btn btn-warning">
         Edit
       </a>
       <a href="/delete_report/<%= @report.id %>" class="btn btn-danger" rel="nofollow">
         Delete
       </a>
+      <% end %>
     </div>
   </div>
 </div>

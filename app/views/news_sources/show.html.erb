@@ -9,7 +9,8 @@
       <dd><%= @news_source.category %></dd>
 
       <dt>Bias Rating</dt>
-      <dd>Nothing</dd>
+      <dd><% arr =@news_source.bias_ratings.pluck(:rating)%>
+      <%=arr.inject{ |sum, el| sum + el }.to_f / arr.size %></dd>
 
       <dt>Description</dt>
       <dd><%= @news_source.description %></dd>

@@ -106,7 +106,7 @@
 
       <% @user.reports.each do |report| %>
       <li class="list-group-item">
-        <%= report.news_source.name %> - 
+        <%= report.news_source.name %> -
         <%= report.content %>
       </a>
       <div class="btn-group btn-group-xs pull-right">
@@ -139,8 +139,8 @@
 
       <% @user.comments.each do |comment| %>
       <li class="list-group-item">
-        <a href="/comments/<%= comment.id %>">
-          <%= comment.user_id %>
+          <%= comment.news_source.name %> -
+          <%= comment.content %>
         </a>
         <div class="btn-group btn-group-xs pull-right">
           <a href="/comments/<%= comment.id %>" class="btn btn-primary">
